@@ -7,7 +7,7 @@ export class SnackEntity {
 
 export enum SnackType {
     DRINK = 'DRINK',
-    BARS = 'BARS',
+    BAR = 'BAR',
     CHIPS = 'CHIPS'
 
 }
