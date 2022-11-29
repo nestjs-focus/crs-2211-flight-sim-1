@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { AddSnackDto } from './dtos/add-snack.dto';
 import { UpdateSnackDto } from './dtos/update-snack.dto';
 import { SnackService } from './snack.service';
@@ -20,10 +20,8 @@ export class SnackController {
     }
 
     @Patch('/:id')
-    updateSnackInfo(@Body() body: UpdateSnackDto, @Param('id') idSnack:string){
-        const {isInMachine, price} = body;
-        console.log(body);
-
-        return this.snackService.updateSnackStatus(isInMachine, price, parseInt(idSnack));
+    updateSnackInfo(@Body() body: UpdateSnackDto, @Param('id', ParseIntPipe) idSnack: number){
+       console.log('The idSnack type is: '+typeof(idSnack));
+        return this.snackService.updateSnackStatus(body,idSnack);
     }
 }
